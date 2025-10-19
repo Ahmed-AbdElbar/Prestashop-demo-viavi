@@ -6,11 +6,18 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
@@ -36,14 +43,24 @@ jobs:
             -Dallure.results.directory=target/allure-results \
             clean test
 
+      - name: Sanity check Allure results exist
+        if: always()
+        run: |
+          echo "Listing target/allure-results"
+          ls -la target/allure-results || true
+          echo "Files in target:"
+          ls -la target || true
+
       - name: Generate Allure HTML (CLI)
+        if: always()
         uses: simple-elf/allure-report-action@v1
         with:
+          allure_version: 2.24.0
           allure_results: target/allure-results
           allure_report: target/allure-report
           keep_reports: 1
 
-      - name: Upload reports (download from Actions → Artifacts)
+      - name: Upload artifacts (download from Actions → Artifacts)
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -54,3 +71,29 @@ jobs:
             target/cucumber.json
             target/surefire-reports
           retention-days: 7
+
+      - name: Create placeholder report if generation failed
+        if: always()
+        run: |
+          if [ ! -f target/allure-report/index.html ]; then
+            mkdir -p target/allure-report
+            echo '<html><body><h2>No Allure results found.</h2></body></html>' > target/allure-report/index.html
+          fi
+
+      - name: Upload Allure report for Pages
+        if: always()
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: target/allure-report
+
+  deploy-pages:
+    if: always()
+    needs: test
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
