@@ -29,25 +29,28 @@ jobs:
           google-chrome --version
 
       - name: Run tests (under Xvfb)
-        run: >
-          xvfb-run -a -s "-screen 0 1920x1080x24"
-          mvn -B -Dfile.encoding=UTF-8
-          -Dcucumber.plugin="io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm,html:target/cucumber-report.html,json:target/cucumber.json,pretty"
-          -Dallure.results.directory=target/allure-results
-          clean test
+        run: |
+          xvfb-run -a -s "-screen 0 1920x1080x24" \
+          mvn -B -Dfile.encoding=UTF-8 \
+            -Dcucumber.plugin="io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm,html:target/cucumber-report.html,json:target/cucumber.json,pretty" \
+            -Dallure.results.directory=target/allure-results \
+            clean test
 
-      - name: Build Allure HTML
-        run: mvn -B allure:report
+      - name: Generate Allure HTML (CLI)
+        uses: simple-elf/allure-report-action@v1
+        with:
+          allure_results: target/allure-results
+          allure_report: target/allure-report
+          keep_reports: 1
 
-      - name: Upload reports (download from Actions > Artifacts)
+      - name: Upload reports (download from Actions → Artifacts)
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: reports
           path: |
+            target/allure-report
             target/cucumber-report.html
             target/cucumber.json
-            target/allure-results
-            target/site/allure-maven-plugin
             target/surefire-reports
           retention-days: 7
