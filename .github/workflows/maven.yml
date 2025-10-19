@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        # Java + Maven cache
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: maven
+
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Install Xvfb (virtual display)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb
+          google-chrome --version
+
+      - name: Run tests (under Xvfb)
+        run: xvfb-run -a mvn -B -Dfile.encoding=UTF-8 clean test
+
+      - name: Build Allure HTML
+        run: mvn -B allure:report
+
+      - name: Upload reports (download from Actions > Artifacts)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports
+          path: |
+            target/cucumber-report.html
+            target/cucumber.json
+            target/allure-results
+            target/site/allure-maven-plugin
+            target/surefire-reports
+          retention-days: 7
