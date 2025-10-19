@@ -1,6 +1,7 @@
 package support;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -25,7 +26,12 @@ public class DriverFactory {
             if (Config.headless()) opts.addArguments("--headless=new");
             driver = new ChromeDriver(opts);
             driver.manage().timeouts().implicitlyWait(Config.implicitWait());
-            driver.manage().window().maximize();
+            try {
+                driver.manage().window().maximize();
+            } catch (Exception ignore) {
+                // headless/Xvfb can't truly maximize so I just set a certain size
+                driver.manage().window().setSize(new Dimension(1920, 1080));
+            }
         }
         return driver;
     }

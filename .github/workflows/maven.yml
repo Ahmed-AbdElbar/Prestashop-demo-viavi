@@ -30,7 +30,7 @@ jobs:
           google-chrome --version
 
       - name: Run tests (under Xvfb)
-        run: xvfb-run -a mvn -B -Dfile.encoding=UTF-8 clean test
+        run: xvfb-run -a -s "-screen 0 1920x1080x24" mvn -B -Dfile.encoding=UTF-8 clean test
 
       - name: Build Allure HTML
         run: mvn -B allure:report
