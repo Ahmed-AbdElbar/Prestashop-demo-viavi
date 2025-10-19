@@ -6,14 +6,15 @@ Here are example reports:
 note that I created a hook to capture a screenshot after each step to save evidence of failure/sucess
 
 1-cucumber report for local run
-<img width="1918" height="996" alt="image" src="https://github.com/user-attachments/assets/dd71c6bc-a7d0-4f28-8e78-ff533d75a8a9" />
+<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/2c8a22f0-8946-4e61-a604-e00f5e83c7ab" />
 
 
 2-allure report for local run
 <img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/2ac82d67-93bf-44ae-9cce-2d444a2413d9" />
 
 3-cucmber report for github actions run (cloud)
-<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/c01c4ec8-7ebf-4ec8-a348-e34cb84136c3" />
+<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/3c70ccb2-cc44-408c-a15e-76ecc71139e9" />
+
 
 4-allure report for github actions run (cloud)
 this one was a little bit tricky because of the static loading of the JSON files that contain data for allure to populate so i had to use page deployment on github
@@ -23,6 +24,7 @@ and to open allure report I should use the highlighted link in the screenshot be
 
 and this is how the report looks
 <img width="1918" height="996" alt="image" src="https://github.com/user-attachments/assets/61a2ca8e-8c2f-472d-89c5-7cf1daac096a" />
+
 
 
 
