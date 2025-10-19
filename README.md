@@ -4,6 +4,7 @@ I also used the Allure library to generate reports alongside Cucumber reports (f
 GitHub Actions is also used to run all tests in the repo and then uploads the Cucumber and Allure reports as ZIP artifacts to be downloaded.
 Here are example reports: 
 note that I created a hook to capture a screenshot after each step to save evidence of failure/sucess
+
 1-cucumber report for local run
 <img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/248ec50b-0693-49ff-8dd3-1b5fcda90419" />
 
@@ -14,3 +15,4 @@ note that I created a hook to capture a screenshot after each step to save evide
 <img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/c01c4ec8-7ebf-4ec8-a348-e34cb84136c3" />
 
 4-allure report for github actions run (cloud)
+
