@@ -15,4 +15,9 @@ note that I created a hook to capture a screenshot after each step to save evide
 <img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/c01c4ec8-7ebf-4ec8-a348-e34cb84136c3" />
 
 4-allure report for github actions run (cloud)
+this one was a little bit tricky because of the static loading of the JSON files that contain data for allure to populate so i had to use page deployment on github
+and to open allure report I should use the highlighted link in the screenshot below
+<img width="1912" height="954" alt="image" src="https://github.com/user-attachments/assets/c9db121f-3255-4c09-87f9-f0c153023b82" />
 
+and this is how the report looks
+<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/f48d0615-55b8-4619-bef4-981020406ae9" />
