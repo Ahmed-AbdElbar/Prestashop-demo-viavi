@@ -1,7 +1,7 @@
 In this repo I used Cucumber for BDD and Selenium (Java) with JUnit as the test runner, and used the Page Object Model for organizing the website’s pages to centralize any changeable locators.
 I added one feature file with the requested scenario (a simple flow to register and add an item to the cart and validate it has been added).
 I also used the Allure library to generate reports alongside Cucumber reports (for different preferences).
-GitHub Actions is also used to run all tests in the repo and then uploads the Cucumber and Allure reports as ZIP artifacts to be downloaded.
+GitHub Actions is also used to run all tests in the repo and then uploads the Cucumber reports as ZIP artifacts to be downloaded.
 Here are example reports: 
 note that I created a hook to capture a screenshot after each step to save evidence of failure/sucess
 
@@ -21,3 +21,4 @@ and to open allure report I should use the highlighted link in the screenshot be
 
 and this is how the report looks
 <img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/f48d0615-55b8-4619-bef4-981020406ae9" />
+
