@@ -6,7 +6,8 @@ Here are example reports:
 note that I created a hook to capture a screenshot after each step to save evidence of failure/sucess
 
 1-cucumber report for local run
-<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/248ec50b-0693-49ff-8dd3-1b5fcda90419" />
+<img width="1918" height="996" alt="image" src="https://github.com/user-attachments/assets/dd71c6bc-a7d0-4f28-8e78-ff533d75a8a9" />
+
 
 2-allure report for local run
 <img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/2ac82d67-93bf-44ae-9cce-2d444a2413d9" />
@@ -17,8 +18,11 @@ note that I created a hook to capture a screenshot after each step to save evide
 4-allure report for github actions run (cloud)
 this one was a little bit tricky because of the static loading of the JSON files that contain data for allure to populate so i had to use page deployment on github
 and to open allure report I should use the highlighted link in the screenshot below
-<img width="1912" height="954" alt="image" src="https://github.com/user-attachments/assets/c9db121f-3255-4c09-87f9-f0c153023b82" />
+<img width="1918" height="996" alt="image" src="https://github.com/user-attachments/assets/e1fb0202-d45a-4983-8662-7fdd5da6b380" />
+
 
 and this is how the report looks
-<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/f48d0615-55b8-4619-bef4-981020406ae9" />
+<img width="1918" height="996" alt="image" src="https://github.com/user-attachments/assets/61a2ca8e-8c2f-472d-89c5-7cf1daac096a" />
+
+
 
