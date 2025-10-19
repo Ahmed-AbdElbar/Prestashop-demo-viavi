@@ -13,7 +13,6 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Set up JDK 17
-        # Java + Maven cache
         uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -30,7 +29,12 @@ jobs:
           google-chrome --version
 
       - name: Run tests (under Xvfb)
-        run: xvfb-run -a -s "-screen 0 1920x1080x24" mvn -B -Dfile.encoding=UTF-8 clean test
+        run: >
+          xvfb-run -a -s "-screen 0 1920x1080x24"
+          mvn -B -Dfile.encoding=UTF-8
+          -Dcucumber.plugin="io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm,html:target/cucumber-report.html,json:target/cucumber.json,pretty"
+          -Dallure.results.directory=target/allure-results
+          clean test
 
       - name: Build Allure HTML
         run: mvn -B allure:report
